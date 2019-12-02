@@ -1,18 +1,29 @@
 import React, { useState } from 'react'
-import API from '../adapters/API'
+import API from '../../adapters/API'
+import { useHistory } from 'react-router-dom'
 const BASE_URL = 'http://localhost:3001'
 
 const LoginPage = (props) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [errors, setErrors] = useState("")
+  const history = useHistory()
 
-    const submitLogin = (event) => {
-      event.preventDefault()
-      API.login({ email, password })
-        .then(console.log)
-    }
+  const submitLogin = (event) => {
+    event.preventDefault()
+    API.login({email, password})
+      .then(user => {
+        console.log(user)
+        props.setUser(user.user)
+        history.push("/home")
+      })
+      .catch(errors => {
+        console.log(errors)
+        setErrors(errors)
+      })
+  }
 
-  return (
+   return (
     <div>
       <h1>Log In</h1>
         <form onSubmit={submitLogin}>
