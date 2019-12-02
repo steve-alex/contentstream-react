@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 const BASE_URL = 'http://localhost:3001'
 
-const newUserForm = () => {
+const NewUserForm = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -18,6 +18,7 @@ const newUserForm = () => {
           password: password
         })
       })
+      .then(console.log)
     }
 
     return (
@@ -45,3 +46,5 @@ const newUserForm = () => {
       </div>
     )
 }
+
+export default NewUserForm;

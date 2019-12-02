@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 const BASE_URL = 'http://localhost:3001'
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -18,10 +18,11 @@ const LoginForm = () => {
                 password: password
             })
         })
+        .then(props.setCurrentUser(email))
     }
 
   return (
-    <>
+    <div>
       <h1>Log In</h1>
         <form onSubmit={submitLogin}>
             <label>
@@ -42,7 +43,7 @@ const LoginForm = () => {
             </label>
             <input type="submit"/>
         </form>
-    </>
+    </div>
     )
 }
 

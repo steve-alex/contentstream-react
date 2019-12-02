@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import HomePage from './containers/homePage.js'
+import HomePage from './pages/homePage.js'
+import LoginPage from './pages/loginPage.js'
+import { Route } from "react-router-dom"
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(false)
 
   if (currentUser) {
-    return (<HomePage />)
+    return (
+      <Route path='/home' component={HomePage}/>
+    )
   } else {
-     return (<LoginPage />)
+    return (
+      <Route path='/' component={LoginPage}/>
+    )
   };
+
 }
 
 export default App;

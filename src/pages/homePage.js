@@ -3,13 +3,9 @@ import React, { useState } from 'react'
 const HomePage = () => {
     const [currentUser, setCurrentUser] = useState(false)
 
-    if (currentUser) {
-        return (
-
-        )
-    } else {
-       return (
-        <LoginForm />
-       )
-    }
+    return(
+        <h1>Home page!</h1>
+    )
 }
+
+export default HomePage;
