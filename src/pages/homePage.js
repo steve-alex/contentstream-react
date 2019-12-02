@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import LoginPage from './LoginPage'
 
 const HomePage = () => {
     const [currentUser, setCurrentUser] = useState(false)

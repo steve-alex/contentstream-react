@@ -31,7 +31,7 @@ const NewUserForm = () => {
               type="text"
               name="email"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}/> 
+              onChange={(event) => setEmail(event.target.value)}/>
           </label>
           <label>
             Password:
