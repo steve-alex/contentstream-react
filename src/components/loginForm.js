@@ -13,10 +13,10 @@ const LoginForm = () => {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: {
+          body: JSON.stringify({
                 email: email,
                 password: password
-            }
+            })
         })
     }
 
@@ -28,7 +28,7 @@ const LoginForm = () => {
                     type="text"
                     name="email"
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}/> 
+                    onChange={(event) => setEmail(event.target.value)}/>
             </label>
             <label>
                 Password:
