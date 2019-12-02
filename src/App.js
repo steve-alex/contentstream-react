@@ -1,24 +1,28 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import LoginForm from './components/loginForm.js'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <LoginForm />
+        {/* <TwitterTimelineEmbed
+          sourceType="profile"
+          screenName="SteveAl16866045"
+          options={{height: 700}}
+        />
+        <TwitterTweetEmbed
+          tweetId={'1201483796115329025'}
+        />
+         <TwitterShareButton
+          url={'https://facebook.com/saurabhnemade'}
+          options={{ text: '#reactjs is awesome', via: 'saurabhnemade' }}
+        />
+        <TwitterVideoEmbed
+          id={'560070183650213889'}
+        /> */}
+
     </div>
   );
 }
