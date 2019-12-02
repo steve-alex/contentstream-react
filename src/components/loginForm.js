@@ -20,7 +20,9 @@ const LoginForm = () => {
         })
     }
 
-    return (
+  return (
+    <>
+      <h1>Log In</h1>
         <form onSubmit={submitLogin}>
             <label>
                 Email:
@@ -40,6 +42,7 @@ const LoginForm = () => {
             </label>
             <input type="submit"/>
         </form>
+    </>
     )
 }
 
