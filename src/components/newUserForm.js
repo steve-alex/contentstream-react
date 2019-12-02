@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 const BASE_URL = 'http://localhost:3001'
 
-const newUserForm = () => {
+const NewUserForm = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -30,7 +30,7 @@ const newUserForm = () => {
               type="text"
               name="email"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}/> 
+              onChange={(event) => setEmail(event.target.value)}/>
           </label>
           <label>
             Password:
@@ -45,3 +45,5 @@ const newUserForm = () => {
       </div>
     )
 }
+
+export default NewUserForm
