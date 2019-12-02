@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import API from '../adapters/API'
 const BASE_URL = 'http://localhost:3001'
 
 const LoginForm = (props) => {
@@ -6,19 +7,8 @@ const LoginForm = (props) => {
   const [password, setPassword] = useState("")
 
     const submitLogin = (event) => {
-        event.preventDefault()
-        return fetch(`${BASE_URL}/users/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-          body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        })
-        .then(props.setCurrentUser(email))
+      API.login({ email, password })
+        .then(console.log)
     }
 
   return (

@@ -1,13 +1,41 @@
-import LoginForm from '../components/loginForm.js'
-import NewUserForm from '../components/newUserForm.js'
 import React, { useState } from 'react'
+import API from '../adapters/API'
+const BASE_URL = 'http://localhost:3001'
 
 const LoginPage = (props) => {
-    return (
-        <div>
-            <LoginForm setCurrentUser={props.setCurrentUser}/>
-            <NewUserForm />
-        </div>
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+    const submitLogin = (event) => {
+      event.preventDefault()
+      API.login({ email, password })
+        .then(console.log)
+    }
+
+  return (
+    <div>
+      <h1>Log In</h1>
+        <form onSubmit={submitLogin}>
+            <label>
+                Email:
+                <input
+                    type="text"
+                    name="email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}/>
+            </label>
+            <label>
+                Password:
+                <input
+                    type="text"
+                    name="password"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}/>
+            </label>
+            <input type="submit"/>
+        </form>
+        <p><a href={`${BASE_URL}/auth/signup`}>Create a new account</a></p>
+    </div>
     )
 }
 
