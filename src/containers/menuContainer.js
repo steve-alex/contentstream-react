@@ -4,7 +4,7 @@ import { isUpdateExpression } from '@babel/types';
 
 const MenuContainer = () => {
     const [buckets, setBuckets] = useState("")
-    const [selected, setSelectied] = useState("")
+    // const [selected, setSelectied] = useState("")
 
     useEffect(() => {
       //Get the buckets for a specific user//
