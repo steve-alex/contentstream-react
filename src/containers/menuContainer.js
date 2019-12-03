@@ -16,15 +16,15 @@ const MenuContainer = (props) => {
       e.preventDefault()
       console.log(bucketName)
       return fetch("http://localhost:3001/buckets", {
-        type: "POST",
+        method: "POST",
         headers: {
           "Content-Type": "Application/json",
           "Accept": "Application/json",
           "authorisation": localStorage.token
         },
-        body: {
+        body: JSON.stringify({
           name: bucketName
-        }
+        })
       })
       .then(jsonify)
       .then(console.log)
@@ -37,7 +37,7 @@ const MenuContainer = (props) => {
           <Menu.Item>
             <Input className='icon' icon='filter' placeholder='Filter...' />
           </Menu.Item>
-            
+
           <Menu.Item
             name='Home'
             active={props.selected === "Home"}
