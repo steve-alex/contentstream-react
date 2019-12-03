@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from "react-router-dom"
-import LoginPage from './Auth/loginPage.js'
+import LoginPage from './loginPage.js'
 import signupPage from './signupPage.js'
 
 const AuthPage = (props) => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from "react-router-dom"
 import AuthPage from './pages/authPage.js'
+import HomePage from './pages/homePage.js'
 import API from './adapters/API.js'
 import paths from "./paths.js";
 import './App.css';
@@ -23,6 +24,7 @@ const App = ({history}) => {
   if (user) {
     return (
       <div className="App">
+        <Route path="/home" component={HomePage}/>
       </div>
     )
   } else {

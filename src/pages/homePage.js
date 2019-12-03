@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
-import LoginPage from './loginPage'
-import { Dropdown, Menu } from 'semantic-ui-react'
+import React, { useState, useEffect } from 'react'
+import MenuContainer from '../containers/menuContainer.js'
+import { Dropdown, Menu, Button } from 'semantic-ui-react'
 
 const HomePage = () => {
-    // const [currentUser, setCurrentUser] = useState(true)
-    const [activeItem, setActiveItem] = useState("account")
 
-    return(
-    <>
-      <h1>Home page!</h1>
-    </>
+    useEffect(() => {
+      //Get the buckets for a specific user//
+    }, [])
+
+    return (
+      <>
+        <div class="ui top banner test ad" data-text="Top Banner"></div>
+        <MenuContainer />
+      </>
     )
+
 }
 
 export default HomePage;

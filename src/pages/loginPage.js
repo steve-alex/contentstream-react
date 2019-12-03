@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import API from '../../adapters/API'
+import API from '../adapters/API'
 import { useHistory } from 'react-router-dom'
 const BASE_URL = 'http://localhost:3001'
 
