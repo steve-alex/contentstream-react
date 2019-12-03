@@ -13,7 +13,7 @@ const EmbeddedTimeline = (props) => {
             <TwitterTimelineEmbed
                 sourceType="profile"
                 screenName={props.search}
-                options={{height: 400, width: 500}}  
+                options={{height: 400, width: 315}}  
             />
         </div>
     )

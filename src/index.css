@@ -15,3 +15,47 @@ code {
 #ad {
   width: 100%
 }
+/* 
+.embeddedTweetContainer {
+  width: 100%; 
+  text-align: center;
+}
+
+.twitter-tweet{
+  display: inline-block; 
+  margin: 0 auto;
+  padding: 3px;
+} */
+
+.banner {
+  width: 100% !important;
+  background-color: black;
+}
+
+.menu {
+  padding: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.main-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.home-container {
+  display: inline-block; 
+  margin: 0 auto;
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-container {
+  padding-top: 10px;
+}
+
+.content-container {
+  width: 498px;
+}

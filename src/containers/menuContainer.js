@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Dropdown, Menu, Button, Input, Grid } from 'semantic-ui-react'
+import { Dropdown, Menu, Button, Input, Grid, Sticky } from 'semantic-ui-react'
 import { isUpdateExpression } from '@babel/types';
 import jsonify from '../adapters/API.js'
 
@@ -14,7 +14,6 @@ const MenuContainer = (props) => {
 
     const createNewBucket = (e) => {
       e.preventDefault()
-      console.log(bucketName)
       return fetch("http://localhost:3001/buckets", {
         method: "POST",
         headers: {
@@ -27,13 +26,13 @@ const MenuContainer = (props) => {
         })
       })
       .then(jsonify)
-      .then(console.log)
+      .then(resp => console.log(resp.response))
       // .then(newBucket => setBuckets([...buckets, newBucket]))
     }
 
     return (
       <>
-        <Menu pointing vertical>
+        <Menu pointing vertical >
           <Menu.Item>
             <Input className='icon' icon='filter' placeholder='Filter...' />
           </Menu.Item>
@@ -45,8 +44,8 @@ const MenuContainer = (props) => {
           />
           <Menu.Item
             name='Feed Search'
-            active={props.selected ==="Feed Search"}
-            onClick={(e) => props.setSelected("Feed Search")}
+            active={props.selected ==="Feed"}
+            onClick={(e) => props.setSelected("Feed")}
           />
           <Menu.Item
             name='Account'
@@ -54,20 +53,34 @@ const MenuContainer = (props) => {
             onClick={(e) => props.setSelected("Account")}
           />
           <Menu.Item
-            name='Account'
-            active={props.selected === "Create Bucket"}
-            onClick={(e) => props.setSelected("Account")}
+            name='Buckets'
           />
+          <Menu.Menu>
+            <Menu.Item
+              name='Kanye'
+              active={props.selected === "Kanye"}
+              onClick={(e) => props.setSelected("Kanye")}
+            />
+          <Menu.Item
+              name='Memes'
+              active={props.selected === "Memes"}
+              onClick={(e) => props.setSelected("Memes")}
+            />
+          <Menu.Item
+              name='New Bucket'
+              active={props.selected === "New"}
+              onClick={(e) => props.setSelected("New")}
+            />
+          </Menu.Menu>
           </Menu>
-
-          <form onSubmit={createNewBucket}>
+          {/* <form onSubmit={createNewBucket}>
             <input
                 type="text"
                 name="name"
                 value={bucketName}
                 onChange={(e) => setBucketName(e.target.value)}/>
             <input type="submit" value="Submit" />
-          </form>
+          </form> */}
       </>
     )
 

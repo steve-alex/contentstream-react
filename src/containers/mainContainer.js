@@ -22,15 +22,16 @@ const MainContainer = (props) => {
 
   if (props.selected === "Home") {
     return (
-        <div>
-          {tweets.map(tweet => {
-              return <TwitterTweetEmbed
-                tweetId={tweet}
-                onClick={console.log} />
-          })}
-        </div>
+      <div className="embeddedTweetContainer">
+        {tweets.map(tweet => {
+          return <TwitterTweetEmbed
+            className="embeddedTweet"
+            tweetId={tweet}
+            onClick={console.log} />
+        })}
+      </div>
     )
-  } else {
+  } else if (props.selected === "Feed") {
     return (
         <div>
             <Input
@@ -44,8 +45,12 @@ const MainContainer = (props) => {
             />
         </div>
     )
-  }
-  //else if feed search then render the feed
+    } else {
+        return (
+            <h1>Hello</h1>
+        )
+    }
 }
+  //else if feed search then render the feed
  
 export default MainContainer;
