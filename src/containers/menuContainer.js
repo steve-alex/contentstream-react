@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Dropdown, Menu, Button, Input } from 'semantic-ui-react'
+import { Dropdown, Menu, Button, Input, Grid } from 'semantic-ui-react'
 import { isUpdateExpression } from '@babel/types';
 
-const MenuContainer = () => {
+const MenuContainer = (props) => {
     const [buckets, setBuckets] = useState("")
     // const [selected, setSelectied] = useState("")
 
@@ -19,20 +19,20 @@ const MenuContainer = () => {
             
           <Menu.Item
             name='Home'
-            active={false}
-            onClick={console.log}
+            active={props.selected === "Home"}
+            onClick={(e) => props.setSelected("Home")}
           />
           <Menu.Item
-            name='messages'
-            active={true}
-            onClick={console.log}
+            name='Feed Search'
+            active={props.selected ==="Feed Search"}
+            onClick={(e) => props.setSelected("Feed Search")}
           />
           <Menu.Item
-            name='friends'
-            active={false}
-            onClick={console.log}
+            name='Account'
+            active={props.selected === "Account"}
+            onClick={(e) => props.setSelected("Account")}
           />
-        </Menu>
+          </Menu>
       </>
     )
 

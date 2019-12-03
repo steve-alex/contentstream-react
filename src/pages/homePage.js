@@ -4,7 +4,7 @@ import PostsContainer from '../containers/postsContainer.js'
 import { Dropdown, Menu, Button } from 'semantic-ui-react'
 
 const HomePage = () => {
-  const [selected, setSelected] = useState("")
+  const [selected, setSelected] = useState("Home")
 
   useEffect(() => {
     //Get the buckets for a specific user//
@@ -13,7 +13,9 @@ const HomePage = () => {
   return (
     <>
       <div className="ui top banner test ad" data-text="Top Banner"></div>
-      <MenuContainer />
+      <MenuContainer
+        selected={selected}
+        setSelected={setSelected}/>
       <PostsContainer />
     </>
   )
