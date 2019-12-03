@@ -12,14 +12,13 @@ import TwitterTimeline from '../components/twitterTimeline';
 const MainContainer = (props) => {
   const [,setState]=useState();
   const [tweets, setTweets] = useState(['1201641730350600192', '1200797921958076416', '1201833463428591618', '1201758018481917952'])
-  const [searchTerm, setSearchTerm] = useState("kanyewest")
+  const [searchTerm, setSearchTerm] = useState("")
 
   const searchForUser = (e) => {
     setSearchTerm(e.target.value)
     console.log(e.target.value)
     // e.target.forceUpdate();
   }
-
 
   if (props.selected === "Home") {
     return (
@@ -40,16 +39,13 @@ const MainContainer = (props) => {
                 value={searchTerm}
                 onChange={(e) => searchForUser(e)}
             />
-                
             <TwitterTimeline
                 screenName={searchTerm}
             />
-                
-
         </div>
     )
   }
-
+  //else if feed search then render the feed
 }
  
 export default MainContainer;
