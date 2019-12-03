@@ -20,10 +20,22 @@ const PostsContainer = () => {
         .then(resp => resp.json())
         .then(console.log)
     }
+    
+    const logUserIn = (e) => {
+      e.preventDefault()
+      return fetch(`${BASE_URL}/twitter/login`, {
+        headers: {
+          Authorisation: localStorage.getItem("token"),
+        }
+      })
+        .then(resp => resp.json())
+        .then(console.log)
+    }
 
     return (
       <>
         <button onClick={getTweets}>Get tweets</button>
+        <button onClick={logUserIn}>Login</button>
       </>
     )
 
