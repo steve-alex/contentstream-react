@@ -1,7 +1,7 @@
 const API_ENDPOINT = 'http://localhost:3001'
 const SIGNUP_URL = `${API_ENDPOINT}/users`
 const LOGIN_URL = `${API_ENDPOINT}/users/login`
-const VALIDATE_URL = `${API_ENDPOINT}/validate` //Needs to be created!
+const VALIDATE_URL = `${API_ENDPOINT}/users/validate`
 
 const login = ({email, password}) => {
   return fetch(LOGIN_URL, {
@@ -37,13 +37,11 @@ const jsonify = (res) => {
 const validate = (user) => {
   return fetch(VALIDATE_URL, {
     headers: {
-      Authorisation: localStorage.getItem("token"),
-      user: user
+      Authorisation: localStorage.getItem("token")
     }
   })
-  .then(resp => resp.json())
+  .then(jsonify)
   .then(data => {
-    //the response returns a user and token paramter for use here
     localStorage.setItem("token", data.token);
     return data.user
   })

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import API from '../adapters/API'
 import { useHistory } from 'react-router-dom'
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'http://localhost:3000'
 
 const LoginPage = (props) => {
   const [email, setEmail] = useState("")
