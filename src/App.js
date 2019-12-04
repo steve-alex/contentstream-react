@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 import AuthPage from './pages/authPage.js'
 import HomePage from './pages/homePage.js'
 import API from './adapters/API.js'
@@ -11,12 +11,14 @@ const App = ({history}) => {
   const [buckets, setBuckets] = useState([])
   const [timeline, setTimeline] = useState([])
 
-  useEffect(() => {
+  useEffect( async () => {
+    const twitterString = window.location.search.split('?')[1]
+    twitterString && await authoriseTwitter(twitterString)
     API.validate(user)
       .then(resp => {
         setUser(resp.user)
         setBuckets(resp.buckets)
-        setTimeline(resp.timeline)
+        setTimeline(resp.timeline ? resp.timeline : [])
         history.push(paths.HOME)
       })
       .catch(() => {
@@ -25,11 +27,32 @@ const App = ({history}) => {
       })
   }, []);
 
+  const authoriseTwitter = (twitterString) => {
+    const twitterParams = twitterString.split('&').reduce((memo, param) => {
+      const split = param.split('=')
+      memo[split[0]] = split[1]
+      return memo
+    }, {})
+    console.log(twitterParams)
+    return fetch('http://localhost:3001/twitter/success', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        'Authorisation': localStorage.token
+      },
+      body: JSON.stringify(twitterParams)
+    }).then(res => res.json()).then(console.log)
+  }
+  
+
   if (user) {
     return (
       <div className="App">
         <Route path="/home">
-          <HomePage />
+          <HomePage
+            buckets={buckets}
+            timeline={timeline}/>
         </Route>
       </div>
     )

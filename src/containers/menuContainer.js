@@ -2,11 +2,27 @@ import React, { useState, useEffect } from 'react'
 import { Dropdown, Menu, Button, Input, Grid, Sticky } from 'semantic-ui-react'
 import { isUpdateExpression } from '@babel/types';
 import jsonify from '../adapters/API.js'
+import BucketsContainer from './bucketsContainer.js'
+
+const twitterLogin = () => {
+  fetch('http://localhost:3001/twitter/login', {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorisation": localStorage.token
+    }
+  }).then(res => res.json()).then(res => {
+    if (typeof res === 'string' && res.startsWith('https://api.twitter.com/oauth/authorize?oauth_token=')) {
+      window.location.href = res
+    } else {
+      console.log(res)
+    }
+  })
+}
 
 const MenuContainer = (props) => {
     const [buckets, setBuckets] = useState("")
     const [bucketName, setBucketName] = useState("")
-    // const [selected, setSelectied] = useState("")
 
     useEffect(() => {
       //Get the buckets for a specific user//
@@ -37,13 +53,17 @@ const MenuContainer = (props) => {
       // .then(newBucket => setBuckets([...buckets, newBucket]))
     }
 
+    const onDrop = (e) => {
+
+    }
+
+    const onDragOver = (e) => {
+
+    }
+    
     return (
       <>
         <Menu pointing vertical >
-          <Menu.Item>
-            <Input className='icon' icon='filter' placeholder='Filter...' />
-          </Menu.Item>
-
           <Menu.Item
             name='Home'
             active={props.selected === "Home"}
@@ -65,35 +85,33 @@ const MenuContainer = (props) => {
             name='Buckets'
           />
           <Menu.Menu>
-            <Menu.Item
-              name='Kanye'
-              onDragOver={(e)=> console.log(e)}
-              active={props.selected === "Kanye"}
-              onClick={(e) => props.setSelected("Kanye")}
-            />
-          <Menu.Item
-              name='Memes'
-              active={props.selected === "Memes"}
-              onClick={(e) => props.setSelected("Memes")}
-            />
-          <Menu.Item
-              name='New Bucket'
-              active={props.selected === "New"}
-              onClick={(e) => props.setSelected("New")}
-            />
+          {/* <BucketsContainer
+            selected={props.selected}
+            setSelected={props.selected}/> */}
+          {props.buckets.map(bucket => {
+            return <Menu.Item
+                      onDrop={(e) => onDrop(e)}
+                      onDragOver={(e) => onDragOver(e)}
+                      name={bucket.name}
+                      active={props.selected === bucket.name}
+                      onClick={(e) => props.setSelected(bucket.name)}
+                    />})
+          }
           </Menu.Menu>
-          </Menu>
-          {/* <form onSubmit={createNewBucket}>
+        </Menu>
+          <form onSubmit={createNewBucket}>
             <input
                 type="text"
                 name="name"
                 value={bucketName}
                 onChange={(e) => setBucketName(e.target.value)}/>
             <input type="submit" value="Submit" />
-          </form> */}
+            
+          </form>
+          
+        <button onClick={twitterLogin}>log in to twitter</button>
       </>
-    )
-
+    )    
 }
 
 export default MenuContainer;
