@@ -62,7 +62,7 @@ const validate = (user) => {
   .then(jsonify)
   .then(data => {
     localStorage.setItem("token", data.token);
-    return data.user
+    return data
   })
 }
 

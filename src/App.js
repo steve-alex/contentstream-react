@@ -8,11 +8,15 @@ import './App.css';
 
 const App = ({history}) => {
   const [user, setUser] = useState(null)
+  const [buckets, setBuckets] = useState([])
+  const [timeline, setTimeline] = useState([])
 
   useEffect(() => {
     API.validate(user)
-      .then(user => {
-        setUser(user)
+      .then(resp => {
+        setUser(resp.user)
+        setBuckets(resp.buckets)
+        setTimeline(resp.timeline)
         history.push(paths.HOME)
       })
       .catch(() => {
