@@ -26,13 +26,16 @@ const MainContainer = (props) => {
   } else if (props.selected === "Feed") {
     return (
       <>
-      <Input
-        className='icon'
-        icon='search'
-        placeholder='Search...'
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <div className="user-search">
+        <Input
+          className='icon'
+          icon='search'
+          placeholder='Search...'
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
       <TwitterTimeline
         screenName={searchTerm}
       />
@@ -40,7 +43,10 @@ const MainContainer = (props) => {
     )
     } else if (props.selected === "Account") {
       return (
-        <AccountContainer twitter={props.twitter} setTwitter={props.setTwitter} />
+        <AccountContainer
+          twitter={props.twitter}
+          setTwitter={props.setTwitter}
+          buckets={props.buckets}/>
       )
     } else {
       return (

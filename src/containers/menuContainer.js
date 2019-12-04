@@ -6,7 +6,8 @@ import {
   Input,
   Grid,
   Sticky,
-  Form
+  Form,
+  Icon
 } from 'semantic-ui-react'
 import { isUpdateExpression } from '@babel/types'
 import jsonify from '../adapters/API.js'
@@ -34,7 +35,7 @@ const twitterLogin = () => {
     })
 }
 
-const MenuContainer = props => {
+const MenuContainer = (props) => {
   const [buckets, setBuckets] = useState('')
   const [bucketName, setBucketName] = useState('')
 
@@ -52,7 +53,7 @@ const MenuContainer = props => {
       })
     })
       .then(resp => resp.json())
-      .then(console.log)
+      .then(() => props.setNewBucket(!props.newBucket))
     // .then(newBucket => setBuckets([...buckets, newBucket]))
   }
 
@@ -82,8 +83,8 @@ const MenuContainer = props => {
         domain: 'twitter.com'
       })
     })
-      .then(API.jsonify)
-      .then(console.log)
+    .then(API.jsonify)
+    .then(console.log)
   }
 
   return (
@@ -127,7 +128,11 @@ const MenuContainer = props => {
           <Form onSubmit={createNewBucket}>
             <Form.Field>
               <label paddding="1px">Create New Bucket</label>
-              <input placeholder="Bucket name..." />
+              <input
+                type="text"
+                placeholder="Bucket name..."
+                value={bucketName}
+                onChange={(e) => setBucketName(e.target.value)}/>
             </Form.Field>
             <Button type="submit">Submit</Button>
           </Form>
