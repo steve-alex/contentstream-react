@@ -54,7 +54,7 @@ const App = ({history}) => {
     return (
       <div className="App">
         <div>
-          <div className="ui top banner test ad" data-text="Top Banner"></div>
+          <div id="banner" className="ui top banner test ad" data-text="contentStream"></div>
         </div>
         {user
           ? <><Redirect from='/' to="/home" />
