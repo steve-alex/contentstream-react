@@ -10,6 +10,7 @@ const App = ({history}) => {
   const [user, setUser] = useState(null)
   const [buckets, setBuckets] = useState([])
   const [timeline, setTimeline] = useState([])
+  const [twitter, setTwitter] = useState(null)
 
   useEffect(() => {
     // apparently useEffect callbacks should be synchronous, but can call async funcs
@@ -18,6 +19,7 @@ const App = ({history}) => {
       twitterString && await authoriseTwitter(twitterString)
       API.validate(user)
         .then(resp => {
+          setTwitter(resp.accountId)
           setUser(resp.user)
           setBuckets(resp.buckets)
           setTimeline(resp.timeline ? resp.timeline : [])
@@ -58,6 +60,8 @@ const App = ({history}) => {
           ? <><Redirect from='/' to="/home" />
         <Route path="/home">
           <HomePage
+            twitter={twitter}
+            setTwitter={setTwitter}
             buckets={buckets}
             timeline={timeline}/>
          </Route></>
