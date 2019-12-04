@@ -11,20 +11,23 @@ const App = ({history}) => {
   const [buckets, setBuckets] = useState([])
   const [timeline, setTimeline] = useState([])
 
-  useEffect( async () => {
-    const twitterString = window.location.search.split('?')[1]
-    twitterString && await authoriseTwitter(twitterString)
-    API.validate(user)
-      .then(resp => {
-        setUser(resp.user)
-        setBuckets(resp.buckets)
-        setTimeline(resp.timeline ? resp.timeline : [])
-        history.push(paths.HOME)
-      })
-      .catch(() => {
-        history.push(paths.LOGIN)
-        console.log()
-      })
+  useEffect(() => {
+    // apparently useEffect callbacks should be synchronous, but can call async funcs
+    (async () => {
+      const twitterString = window.location.search.split('?')[1]
+      twitterString && await authoriseTwitter(twitterString)
+      API.validate(user)
+        .then(resp => {
+          setUser(resp.user)
+          setBuckets(resp.buckets)
+          setTimeline(resp.timeline ? resp.timeline : [])
+          history.push(paths.HOME)
+        })
+        .catch(() => {
+          history.push(paths.LOGIN)
+          console.log()
+        })
+    })()
   }, []);
 
   const authoriseTwitter = (twitterString) => {
