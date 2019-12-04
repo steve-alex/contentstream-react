@@ -3,6 +3,7 @@ import { Dropdown, Menu, Button, Input, Grid, Sticky } from 'semantic-ui-react'
 import { isUpdateExpression } from '@babel/types';
 import jsonify from '../adapters/API.js'
 import BucketsContainer from './bucketsContainer.js'
+import API from '../adapters/API.js'
 
 const twitterLogin = () => {
   fetch('http://localhost:3001/twitter/login', {
@@ -24,17 +25,6 @@ const MenuContainer = (props) => {
     const [buckets, setBuckets] = useState("")
     const [bucketName, setBucketName] = useState("")
 
-    useEffect(() => {
-      //Get the buckets for a specific user//
-    }, [])
-
-    const onDrag = (e, tweet) => {
-      e.preventDefault()
-      console.log(e)
-      console.log(tweet)
-      setBuckets(tweet)
-    }
-
     const createNewBucket = (e) => {
       e.preventDefault()
       return fetch("http://localhost:3001/buckets", {
@@ -48,19 +38,43 @@ const MenuContainer = (props) => {
           name: bucketName
         })
       })
-      .then(jsonify)
-      .then(resp => console.log(resp.response))
+      .then(resp => API.jsonify(resp))
+      .then(console.log)
       // .then(newBucket => setBuckets([...buckets, newBucket]))
     }
 
-    const onDrop = (e) => {
-
-    }
-
     const onDragOver = (e) => {
-
+      e.preventDefault()
+      e.target.style.color = "red"
     }
-    
+
+    const onDragLeave = (e) => {
+      e.preventDefault()
+      e.target.style.color = 'grey'
+    }
+
+    const onDrop = (e, bucketId) => {
+      e.preventDefault()
+      e.target.style.color = 'grey'
+      console.log(bucketId)
+      console.log(props.selectedTweet)
+      return fetch("http://localhost:3001/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "Application/json",
+          "Accept": "Application/json",
+          "authorisation": localStorage.token
+        },
+        body: JSON.stringify({
+          bucketId: bucketId,
+          sourceId: props.selectedTweet,
+          domain: "twitter.com"
+        })
+      })
+      .then(API.jsonify)
+      .then(console.log)
+    }
+
     return (
       <>
         <Menu pointing vertical >
@@ -75,9 +89,8 @@ const MenuContainer = (props) => {
             onClick={(e) => props.setSelected("Feed")}
           />
           <Menu.Item
-            name='Account'
             draggable
-            onDrag={(e) => onDrag(e, 'Account')}
+            name='Account'
             active={props.selected === "Account"}
             onClick={(e) => props.setSelected("Account")}
           />
@@ -90,8 +103,9 @@ const MenuContainer = (props) => {
             setSelected={props.selected}/> */}
           {props.buckets.map(bucket => {
             return <Menu.Item
-                      onDrop={(e) => onDrop(e)}
+                      onDrop={(e) => onDrop(e, bucket.id)}
                       onDragOver={(e) => onDragOver(e)}
+                      onDragLeave={(e) => onDragLeave(e)}
                       name={bucket.name}
                       active={props.selected === bucket.name}
                       onClick={(e) => props.setSelected(bucket.name)}

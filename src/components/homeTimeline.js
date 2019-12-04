@@ -6,11 +6,6 @@ const HomeTimeline = (props) => {
   const [selectedTweet, setSelectedTweet] = useState("")
   const [filter, setFilter] = useState("")
 
-  const onDrag = (e, tweet) => {
-    e.preventDefault()
-    setSelectedTweet(tweet)
-  }
-
   const filterTweet = () => {
     return props.timeline.filter(tweet => {
       if (tweet.text.includes(filter)) {
@@ -26,11 +21,9 @@ const HomeTimeline = (props) => {
         placeholder='Filter..'
         value={filter}
         onChange={(e) => setFilter(e.target.value)} />
-
       {filterTweet().map(tweet => {
         return <Tweet
-          draggable
-          onDrag={(e) => onDrag(e, tweet)}
+          setSelectedTweet={props.setSelectedTweet}
           tweetId={tweet.id}
           text={tweet.text}
           key={tweet.id}
