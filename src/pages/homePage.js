@@ -13,9 +13,6 @@ const HomePage = (props) => {
 
   return (
     <>
-      <div>
-        <div className="ui top banner test ad" data-text="Top Banner"></div>
-      </div>
       <div className="main-container">
         <div className="home-container">
           <div className="menu-container">

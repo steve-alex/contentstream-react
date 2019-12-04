@@ -49,27 +49,24 @@ const App = ({history}) => {
   }
 
 
-  if (user) {
     return (
       <div className="App">
-        <Redirect from='/' to="/home" />
+        <div>
+          <div className="ui top banner test ad" data-text="Top Banner"></div>
+        </div>
+        {user
+          ? <><Redirect from='/' to="/home" />
         <Route path="/home">
           <HomePage
             buckets={buckets}
             timeline={timeline}/>
-        </Route>
+         </Route></>
+          : <Route path="/auth">
+              <AuthPage setUser={setUser} />
+            </Route>
+        }
       </div>
     )
-  } else {
-    return (
-      <div className="App">
-        <Route path="/auth">
-          <AuthPage setUser={setUser} />
-        </Route>
-      </div>
-    )
-  }
-
 }
 
 export default App;
