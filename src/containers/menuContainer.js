@@ -11,8 +11,8 @@ const twitterLogin = () => {
       "Authorisation": localStorage.token
     }
   }).then(res => res.json()).then(res => {
-    if (res.startsWith('https://api.twitter.com/oauth/authorize?oauth_token=')) {
-      window.location.href = URL
+    if (typeof res === 'string' && res.startsWith('https://api.twitter.com/oauth/authorize?oauth_token=')) {
+      window.location.href = res
     } else {
       console.log(res)
     }

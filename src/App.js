@@ -26,7 +26,7 @@ const App = ({history}) => {
           'Authorisation': localStorage.token
         },
         body: JSON.stringify(twitterParams)
-      })
+      }).then(res => res.json()).then(console.log)
     }
 
     API.validate(user)
