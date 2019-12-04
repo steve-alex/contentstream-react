@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Dropdown, Menu, Button, Input, Grid, Sticky } from 'semantic-ui-react'
+import {
+  Dropdown,
+  Menu,
+  Button,
+  Input,
+  Grid,
+  Sticky,
+  Form
+} from 'semantic-ui-react'
 import { isUpdateExpression } from '@babel/types'
 import jsonify from '../adapters/API.js'
 import BucketsContainer from './bucketsContainer.js'
@@ -61,8 +69,6 @@ const MenuContainer = props => {
   const onDrop = (e, bucketId) => {
     e.preventDefault()
     e.target.style.color = 'grey'
-    console.log(bucketId)
-    console.log(props.selectedTweet)
     return fetch('http://localhost:3001/posts', {
       method: 'POST',
       headers: {
@@ -107,7 +113,6 @@ const MenuContainer = props => {
           {props.buckets.map(bucket => {
             return (
               <Menu.Item
-                key={bucket.id}
                 onDrop={e => onDrop(e, bucket.id)}
                 onDragOver={e => onDragOver(e)}
                 onDragLeave={e => onDragLeave(e)}
@@ -118,18 +123,16 @@ const MenuContainer = props => {
             )
           })}
         </Menu.Menu>
+        <Menu.Item>
+          <Form onSubmit={createNewBucket}>
+            <Form.Field>
+              <label paddding="1px">Create New Bucket</label>
+              <input placeholder="Bucket name..." />
+            </Form.Field>
+            <Button type="submit">Submit</Button>
+          </Form>
+        </Menu.Item>
       </Menu>
-      <form onSubmit={createNewBucket}>
-        <input
-          type="text"
-          name="name"
-          value={bucketName}
-          onChange={e => setBucketName(e.target.value)}
-        />
-        <input type="submit" value="Submit" />
-      </form>
-
-      <button onClick={twitterLogin}>log in to twitter</button>
     </>
   )
 }

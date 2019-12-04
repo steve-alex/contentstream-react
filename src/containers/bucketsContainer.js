@@ -27,12 +27,9 @@ const getBucketTweets = (bucketId, setTweetIds) => {
 const BucketsContainer = props => {
   const [tweetIds, setTweetIds] = useState([])
 
-  useEffect(
-    () => {
+  useEffect(() => {
       getBucketTweets(props.selected, setTweetIds)
-    },
-    [props.selected]
-  )
+  }, [props.selected])
 
   return (
     <>
