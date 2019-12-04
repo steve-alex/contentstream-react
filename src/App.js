@@ -44,11 +44,12 @@ const App = ({history}) => {
       body: JSON.stringify(twitterParams)
     }).then(res => res.json()).then(console.log)
   }
-  
+
 
   if (user) {
     return (
       <div className="App">
+        <Redirect from='/' to="/home" />
         <Route path="/home">
           <HomePage
             buckets={buckets}
