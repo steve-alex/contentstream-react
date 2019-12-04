@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Input } from 'semantic-ui-react';
 import Tweet from './tweet.js'
 
@@ -6,12 +6,11 @@ const HomeTimeline = (props) => {
   const [selectedTweet, setSelectedTweet] = useState("")
   const [filter, setFilter] = useState("")
 
-  const filterTweet = () => {
-    return props.timeline.filter(tweet => {
-      if (tweet.text.includes(filter)) {
-        return tweet
-    }})
-  }
+  const filterTweet = () => (
+    props.timeline.filter(tweet => (
+      tweet.text.includes(filter)
+    ))
+  )
 
   return (
     <>

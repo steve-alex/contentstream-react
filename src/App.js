@@ -11,20 +11,23 @@ const App = ({history}) => {
   const [buckets, setBuckets] = useState([])
   const [timeline, setTimeline] = useState([])
 
-  useEffect( async () => {
-    const twitterString = window.location.search.split('?')[1]
-    twitterString && await authoriseTwitter(twitterString)
-    API.validate(user)
-      .then(resp => {
-        setUser(resp.user)
-        setBuckets(resp.buckets)
-        setTimeline(resp.timeline ? resp.timeline : [])
-        history.push(paths.HOME)
-      })
-      .catch(() => {
-        history.push(paths.LOGIN)
-        console.log()
-      })
+  useEffect(() => {
+    // apparently useEffect callbacks should be synchronous, but can call async funcs
+    (async () => {
+      const twitterString = window.location.search.split('?')[1]
+      twitterString && await authoriseTwitter(twitterString)
+      API.validate(user)
+        .then(resp => {
+          setUser(resp.user)
+          setBuckets(resp.buckets)
+          setTimeline(resp.timeline ? resp.timeline : [])
+          history.push(paths.HOME)
+        })
+        .catch(() => {
+          history.push(paths.LOGIN)
+          console.log()
+        })
+    })()
   }, []);
 
   const authoriseTwitter = (twitterString) => {
@@ -44,28 +47,26 @@ const App = ({history}) => {
       body: JSON.stringify(twitterParams)
     }).then(res => res.json()).then(console.log)
   }
-  
 
-  if (user) {
+
     return (
       <div className="App">
+        <div>
+          <div className="ui top banner test ad" data-text="Top Banner"></div>
+        </div>
+        {user
+          ? <><Redirect from='/' to="/home" />
         <Route path="/home">
           <HomePage
             buckets={buckets}
             timeline={timeline}/>
-        </Route>
+         </Route></>
+          : <Route path="/auth">
+              <AuthPage setUser={setUser} />
+            </Route>
+        }
       </div>
     )
-  } else {
-    return (
-      <div className="App">
-        <Route path="/auth">
-          <AuthPage setUser={setUser} />
-        </Route>
-      </div>
-    )
-  }
-
 }
 
 export default App;

@@ -120,12 +120,12 @@ const MenuContainer = (props) => {
                 value={bucketName}
                 onChange={(e) => setBucketName(e.target.value)}/>
             <input type="submit" value="Submit" />
-            
+
           </form>
-          
+
         <button onClick={twitterLogin}>log in to twitter</button>
       </>
-    )    
+    )
 }
 
 export default MenuContainer;
