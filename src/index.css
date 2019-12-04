@@ -15,17 +15,6 @@ code {
 #ad {
   width: 100%
 }
-/* 
-.embeddedTweetContainer {
-  width: 100%; 
-  text-align: center;
-}
-
-.twitter-tweet{
-  display: inline-block; 
-  margin: 0 auto;
-  padding: 3px;
-} */
 
 .banner {
   width: 100% !important;
@@ -33,6 +22,13 @@ code {
 }
 
 .menu {
+  padding: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.icon-filter {
   padding: 0;
   position: -webkit-sticky;
   position: sticky;
@@ -53,9 +49,35 @@ code {
 }
 
 .menu-container {
+  padding-right: 10px;
   padding-top: 10px;
 }
 
 .content-container {
-  width: 498px;
+  width: 520px;
+}
+ 
+.new-tweet-form {
+  padding-top: 10px;
+  padding-bottom: px;
+}
+
+.icon-filter {
+  float: left;
+}
+
+.home-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.new-tweet {
+  width: 100%;
+  padding-bottom: 7px;
+}
+
+.user-search {
+  float: center;
+  padding-top: 10px;
 }
