@@ -38,7 +38,7 @@ const MainContainer = (props) => {
     )
     } else if (props.selected === "Account") {
       return (
-        <AccountContainer />
+        <AccountContainer twitter={props.twitter} setTwitter={props.setTwitter} />
       )
     } else {
       return (
@@ -47,5 +47,5 @@ const MainContainer = (props) => {
     }
 }
   //else if feed search then render the feed
- 
+
 export default MainContainer;
