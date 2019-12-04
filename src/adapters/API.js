@@ -7,12 +7,31 @@ const login = ({email, password}) => {
   return fetch(LOGIN_URL, {
     method: "POST",
     headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
+      "Content-Type": "application/json",
+      "Accept": "application/json"
     },
     body: JSON.stringify({
-        email: email,
-        password: password
+      email: email,
+      password: password
+    })
+  })
+  .then(resp => resp.json())
+  .then(data => {
+    localStorage.setItem("token", data.token)
+    return data
+  })
+}
+
+const createUser = ({email, password}) => {
+  return fetch(`${SIGNUP_URL}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password
     })
   })
   .then(resp => resp.json())
@@ -26,11 +45,11 @@ const login = ({email, password}) => {
 const jsonify = (res) => {
   if (!res.ok) throw res;
   return res.json().then(data => {
-      if (data.err) {
-        throw data.err
-      } else {
-        return data
-      }
+    if (data.err) {
+      throw data.err
+    } else {
+      return data
+    }
   });
 }
 
@@ -48,6 +67,7 @@ const validate = (user) => {
 }
 
 export default {
-    login,
-    validate
+  login,
+  validate,
+  createUser
 }

@@ -24,17 +24,17 @@ const App = ({history}) => {
   if (user) {
     return (
       <div className="App">
-        <Route path="/home" component={HomePage}/>
+        <Route path="/home">
+          <HomePage />
+        </Route>
       </div>
     )
   } else {
     return (
       <div className="App">
-        <Route path="/auth"
-              component={
-                routerProps => <AuthPage {...routerProps} setUser={setUser}/>
-              }
-        />
+        <Route path="/auth">
+          <AuthPage setUser={setUser} />
+        </Route>
       </div>
     )
   }

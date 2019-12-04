@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import API from '../adapters/API'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link} from 'react-router-dom'
 const BASE_URL = 'http://localhost:3000'
 
 const LoginPage = (props) => {
@@ -45,7 +45,7 @@ const LoginPage = (props) => {
             </label>
             <input type="submit"/>
         </form>
-        <p><a href={`${BASE_URL}/auth/signup`}>Create a new account</a></p>
+        <Link to="/auth/signup">Create New Account</Link>
     </div>
     )
 }
