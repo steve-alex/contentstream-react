@@ -8,7 +8,7 @@ const HomeTimeline = (props) => {
 
   const filterTweet = () => (
     props.timeline.filter(tweet => (
-      tweet.text.includes(filter)
+      tweet.text.includes(filter.toLowerCase())
     ))
   )
 

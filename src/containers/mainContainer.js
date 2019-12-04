@@ -42,7 +42,8 @@ const MainContainer = (props) => {
       )
     } else {
       return (
-        <BucketsContainer />
+        <BucketsContainer
+          selected={props.selected}/>
       )
     }
 }

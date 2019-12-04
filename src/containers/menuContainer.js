@@ -107,8 +107,8 @@ const MenuContainer = (props) => {
                       onDragOver={(e) => onDragOver(e)}
                       onDragLeave={(e) => onDragLeave(e)}
                       name={bucket.name}
-                      active={props.selected === bucket.name}
-                      onClick={(e) => props.setSelected(bucket.name)}
+                      active={props.selected === bucket.id}
+                      onClick={(e) => props.setSelected(bucket.id)}
                     />})
           }
           </Menu.Menu>
