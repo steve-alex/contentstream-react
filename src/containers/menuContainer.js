@@ -12,6 +12,13 @@ const MenuContainer = (props) => {
       //Get the buckets for a specific user//
     }, [])
 
+    const onDrag = (e, tweet) => {
+      e.preventDefault()
+      console.log(e)
+      console.log(tweet)
+      setBuckets(tweet)
+    }
+
     const createNewBucket = (e) => {
       e.preventDefault()
       return fetch("http://localhost:3001/buckets", {
@@ -49,6 +56,8 @@ const MenuContainer = (props) => {
           />
           <Menu.Item
             name='Account'
+            draggable
+            onDrag={(e) => onDrag(e, 'Account')}
             active={props.selected === "Account"}
             onClick={(e) => props.setSelected("Account")}
           />
@@ -58,6 +67,7 @@ const MenuContainer = (props) => {
           <Menu.Menu>
             <Menu.Item
               name='Kanye'
+              onDragOver={(e)=> console.log(e)}
               active={props.selected === "Kanye"}
               onClick={(e) => props.setSelected("Kanye")}
             />

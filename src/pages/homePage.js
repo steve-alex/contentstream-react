@@ -4,7 +4,6 @@ import MainContainer from '../containers/mainContainer.js'
 import { Dropdown, Menu, Button, Grid } from 'semantic-ui-react'
 import { TwitterTimelineEmbed, TwitterTweetEmbed } from 'react-twitter-embed';
 
-
 const HomePage = () => {
   const [selected, setSelected] = useState("Home")
 
