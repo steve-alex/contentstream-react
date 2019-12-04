@@ -4,7 +4,7 @@ import MainContainer from '../containers/mainContainer.js'
 import { Dropdown, Menu, Button, Grid } from 'semantic-ui-react'
 import { TwitterTimelineEmbed, TwitterTweetEmbed } from 'react-twitter-embed';
 
-const HomePage = () => {
+const HomePage = (props) => {
   const [selected, setSelected] = useState("Home")
 
   useEffect(() => {
@@ -20,12 +20,14 @@ const HomePage = () => {
         <div className="home-container">
           <div className="menu-container">
             <MenuContainer
+                buckets={props.buckets}
                 selected={selected}
                 setSelected={setSelected}
             />
           </div>
           <div className="content-container">
             <MainContainer
+              timeline={props.timeline}
               selected={selected}
             />
           </div>

@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button } from 'semantic-ui-react';
-import API from '../adapters/API'
 const BASE_URL = 'http://localhost:3000'
 
 

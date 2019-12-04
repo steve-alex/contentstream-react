@@ -6,6 +6,7 @@ import ReactDOM from "react-dom";
 import AccountContainer from './accountContainer.js'
 import TwitterTimeline from '../components/twitterTimeline';
 import HomeTimeline from '../components/homeTimeline.js'
+import BucketsContainer from './bucketsContainer.js';
 
 
 // import LoginPage from './loginPage.js'
@@ -16,7 +17,9 @@ const MainContainer = (props) => {
 
   if (props.selected === "Home") {
     return (
-      <HomeTimeline />
+      <HomeTimeline
+        timeline={props.timeline}
+       />
     )
   } else if (props.selected === "Feed") {
     return (
@@ -38,7 +41,7 @@ const MainContainer = (props) => {
       )
     } else {
       return (
-        <h1>Buckets!</h1>
+        <BucketsContainer />
       )
     }
 }

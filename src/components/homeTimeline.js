@@ -1,33 +1,43 @@
 import React, { useState, useEffect } from 'react'
-import { TwitterTweetEmbed } from 'react-twitter-embed';
+import { Input } from 'semantic-ui-react';
+import Tweet from './tweet.js'
 
 const HomeTimeline = (props) => {
-    const [tweets, setTweets] = useState(['1201641730350600192', '1200797921958076416', '1201833463428591618', '1201758018481917952'])
-    const [selectedTweet, setSelectedTweet] = useState("")
+  const [selectedTweet, setSelectedTweet] = useState("")
+  const [filter, setFilter] = useState("")
 
-    
+  const onDrag = (e, tweet) => {
+    e.preventDefault()
+    setSelectedTweet(tweet)
+  }
 
-    const onDrag = (e, tweet) => {
-        e.preventDefault()
-        setSelectedTweet(tweet)
-    }
+  const filterTweet = () => {
+    return props.timeline.filter(tweet => {
+      if (tweet.text.includes(filter)) {
+        return tweet
+    }})
+  }
 
-    return (
-      <div className="embeddedTweetContainer">
-        {tweets.map(tweet => {
-          return (
-            <div
-              draggable
-              onDrag={(e) => onDrag(e, tweet)}>
-              <TwitterTweetEmbed
-                className="embeddedTweet"
-                tweetId={tweet}
-                onClick={console.log} />
-            </div>
-          )
-        })}
-      </div>
-    )
+  return (
+    <>
+      <Input
+        className='icon'
+        icon='filter'
+        placeholder='Filter..'
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)} />
+
+      {filterTweet().map(tweet => {
+        return <Tweet
+          draggable
+          onDrag={(e) => onDrag(e, tweet)}
+          tweetId={tweet.id}
+          text={tweet.text}
+          key={tweet.id}
+        />
+      })}
+    </>
+  )
 }
 
 export default HomeTimeline;
