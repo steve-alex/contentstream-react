@@ -10,7 +10,7 @@ const BucketsContainer = (props) => {
   }, [])
 
   const getBucketTweets = () => {
-    
+
   }
 
   return (
@@ -19,7 +19,7 @@ const BucketsContainer = (props) => {
         tweetIds.map(tweetId => {
           return <Tweet
             tweetId={tweetId}
-            key={tweet.id}
+            key={tweetId}
           />
         })
       }
