@@ -7,6 +7,7 @@ import { TwitterTimelineEmbed, TwitterTweetEmbed } from 'react-twitter-embed';
 const HomePage = (props) => {
   const [selected, setSelected] = useState("Home")
   const [selectedTweet, setSelectedTweet] = useState(undefined)
+  const [newBucket, setNewBucket] = useState(false)
 
   useEffect(() => {
     //Get the buckets for a specific user//
@@ -22,12 +23,15 @@ const HomePage = (props) => {
               selected={selected}
               setSelected={setSelected}
               selectedTweet={selectedTweet}
+              setNewBucket={setNewBucket}
+              newBucket={newBucket}
             />
           </div>
           <div className="content-container">
             <MainContainer
               setSelectedTweet={setSelectedTweet}
               twitter={props.twitter}
+              buckets={props.buckets}
               setTwitter={props.setTwitter}
               timeline={props.timeline}
               selected={selected}
