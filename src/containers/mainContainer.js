@@ -20,13 +20,15 @@ const MainContainer = (props) => {
       <HomeTimeline
         timeline={props.timeline}
         setSelectedTweet={props.setSelectedTweet}
+        twitter={props.twitter} 
        />
     )
   } else if (props.selected === "Feed") {
     return (
       <>
       <Input
-        focus
+        className='icon'
+        icon='search'
         placeholder='Search...'
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
