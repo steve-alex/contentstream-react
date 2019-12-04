@@ -38,7 +38,7 @@ const LoginPage = props => {
         <label>
           Password:
           <input
-            type="password"
+            type="text"
             name="password"
             value={password}
             onChange={event => setPassword(event.target.value)}

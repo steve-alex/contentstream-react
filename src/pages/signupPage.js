@@ -39,7 +39,7 @@ const SignupPage = props => {
         <label>
           Password:
           <input
-            type="password"
+            type="text"
             name="password"
             value={password}
             onChange={event => setPassword(event.target.value)}
@@ -48,7 +48,7 @@ const SignupPage = props => {
         <label>
           Confirm Password:
           <input
-            type="password"
+            type="text"
             name="password"
             value={confirmPassword}
             onChange={event => setConfirmPassword(event.target.value)}
