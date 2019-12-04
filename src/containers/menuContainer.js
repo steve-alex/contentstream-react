@@ -3,6 +3,22 @@ import { Dropdown, Menu, Button, Input, Grid } from 'semantic-ui-react'
 import { isUpdateExpression } from '@babel/types';
 import jsonify from '../adapters/API.js'
 
+const twitterLogin = () => {
+  fetch('http://localhost:3001/twitter/login', {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorisation": localStorage.token
+    }
+  }).then(res => res.json()).then(res => {
+    if (res.startsWith('https://api.twitter.com/oauth/authorize?oauth_token=')) {
+      window.location.href = URL
+    } else {
+      console.log(res)
+    }
+  })
+}
+
 const MenuContainer = (props) => {
     const [buckets, setBuckets] = useState("")
     const [bucketName, setBucketName] = useState("")
@@ -68,6 +84,7 @@ const MenuContainer = (props) => {
                 onChange={(e) => setBucketName(e.target.value)}/>
             <input type="submit" value="Submit" />
           </form>
+        <button onClick={twitterLogin}>log in to twitter</button>
       </>
     )
 
