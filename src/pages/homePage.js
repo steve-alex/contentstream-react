@@ -24,6 +24,8 @@ const HomePage = (props) => {
           </div>
           <div className="content-container">
             <MainContainer
+              twitter={props.twitter}
+              setTwitter={props.setTwitter}
               timeline={props.timeline}
               selected={selected}
             />
