@@ -43,7 +43,7 @@ const HomeTimeline = (props) => {
       })
     })
     .then(resp => resp.json())
-    .then((e) => console.log(e.target.value))
+    .then(console.log)
   }
 
   if (props.twitter) {
