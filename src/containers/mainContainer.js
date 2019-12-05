@@ -19,8 +19,9 @@ const MainContainer = (props) => {
     return (
       <HomeTimeline
         timeline={props.timeline}
+        setTimeline={props.setTimeline}
         setSelectedTweet={props.setSelectedTweet}
-        twitter={props.twitter} 
+        twitter={props.twitter}
        />
     )
   } else if (props.selected === "Feed") {

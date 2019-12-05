@@ -2,6 +2,16 @@ import React, { useState } from 'react'
 import { Input, Button, Form} from 'semantic-ui-react';
 import Tweet from './tweet.js'
 
+const fetchTweets = (setTimeline) => {
+  fetch('http://localhost:3001/twitter/timeline', {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      Authorisation: localStorage.token
+    }
+  }).then(res => res.json()).then(timeline => setTimeline(timeline))
+}
+
 const HomeTimeline = (props) => {
   const [selectedTweet, setSelectedTweet] = useState("")
   const [filter, setFilter] = useState("")
@@ -42,8 +52,11 @@ const HomeTimeline = (props) => {
         status: newTweet
       })
     })
-    .then(resp => resp.json())
-    .then((e) => console.log(e.target.value))
+      .then(() => {
+        console.log('hi')
+        fetchTweets(props.setTimeline)
+        setNewTweet('')
+      })
   }
 
   if (props.twitter) {

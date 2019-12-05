@@ -35,6 +35,7 @@ const HomePage = (props) => {
               buckets={props.buckets}
               setTwitter={props.setTwitter}
               timeline={props.timeline}
+              setTimeline={props.setTimeline}
               selected={selected}
             />
           </div>
