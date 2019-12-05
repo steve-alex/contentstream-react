@@ -9,7 +9,7 @@ const HomeTimeline = (props) => {
 
   const filterTweet = () => (
     props.timeline.filter(tweet => (
-      tweet.text.includes(filter.toLowerCase())
+      tweet.text.toLowerCase().includes(filter.toLowerCase())
     ))
   )
 
