@@ -33,7 +33,7 @@ const BucketsContainer = props => {
 
   return (
     <>
-      {tweetIds.map(tweetId => {
+      {tweetIds.reverse().map(tweetId => {
         return <Tweet tweetId={tweetId} key={tweetId} />
       })}
     </>
