@@ -22,7 +22,7 @@ const login = ({email, password}) => {
   })
 }
 
-const createUser = ({email, password}) => {
+const createUser = ({email, password, passwordConfirmation}) => {
   return fetch(`${SIGNUP_URL}`, {
     method: "POST",
     headers: {
@@ -30,8 +30,9 @@ const createUser = ({email, password}) => {
       "Accept": "application/json"
     },
     body: JSON.stringify({
-      email: email,
-      password: password
+      email,
+      password,
+      passwordConfirmation
     })
   })
   .then(resp => resp.json())
