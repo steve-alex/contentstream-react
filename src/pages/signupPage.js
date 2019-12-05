@@ -12,8 +12,7 @@ const SignupPage = props => {
 
   const createUser = event => {
     event.preventDefault()
-
-    API.createUser({ email, password })
+    API.createUser({ email, password, passwordConfirmation: confirmPassword })
       .then(user => {
         console.log(user)
         props.setUser(user.user)

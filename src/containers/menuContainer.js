@@ -70,6 +70,7 @@ const MenuContainer = (props) => {
   const onDrop = (e, bucketId) => {
     e.preventDefault()
     e.target.style.color = 'grey'
+    console.log(props.selectedTweet)
     return fetch('http://localhost:3001/posts', {
       method: 'POST',
       headers: {
@@ -79,7 +80,9 @@ const MenuContainer = (props) => {
       },
       body: JSON.stringify({
         bucketId: bucketId,
-        sourceId: props.selectedTweet,
+        sourceId: props.selectedTweet.tweetId,
+        text: props.selectedTweet.text,
+        sourceCreatedAt: props.selectedTweet.sourceCreatedAt,
         domain: 'twitter.com'
       })
     })

@@ -18,7 +18,31 @@ code {
 
 .banner {
   width: 100% !important;
-  background-color: black;
+}
+
+#banner {
+  background: linear-gradient(247deg, #00418c, #4fdeff);
+  background-size: 400% 400%;
+
+  -webkit-animation: AnimationName 2s ease infinite;
+  -moz-animation: AnimationName 2s ease infinite;
+  animation: AnimationName 2s ease infinite;
+
+  @-webkit-keyframes AnimationName {
+    0%{background-position:0% 76%}
+    50%{background-position:100% 25%}
+    100%{background-position:0% 76%}
+  }
+  @-moz-keyframes AnimationName {
+    0%{background-position:0% 76%}
+    50%{background-position:100% 25%}
+    100%{background-position:0% 76%}
+  }
+  @keyframes AnimationName {
+    0%{background-position:0% 76%}
+    50%{background-position:100% 25%}
+    100%{background-position:0% 76%}
+  }
 }
 
 .menu {
@@ -41,7 +65,7 @@ code {
 }
 
 .home-container {
-  display: inline-block; 
+  display: inline-block;
   margin: 0 auto;
   padding: 3px;
   display: flex;
@@ -111,5 +135,3 @@ code {
   padding-bottom: 15px;
   /* float: center; */
 }
-
-

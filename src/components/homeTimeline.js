@@ -77,6 +77,7 @@ const HomeTimeline = (props) => {
             setSelectedTweet={props.setSelectedTweet}
             tweetId={tweet.id}
             text={tweet.text}
+            sourceCreatedAt={tweet.created_at}
             key={tweet.id}
           />
         })}

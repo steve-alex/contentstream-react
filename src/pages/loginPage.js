@@ -48,7 +48,7 @@ const LoginPage = props => {
         </Form.Field>
         <Button type='submit'>Submit</Button>
       </Form>
-      
+
       <Link to="/auth/signup">Create New Account</Link>
       <div>
         {errors}
