@@ -22,7 +22,7 @@ const login = ({email, password}) => {
   })
 }
 
-const createUser = ({email, password, passwordConfirmation}) => {
+const createUser = ({ email, password, passwordConfirmation }) => {
   return fetch(`${SIGNUP_URL}`, {
     method: "POST",
     headers: {

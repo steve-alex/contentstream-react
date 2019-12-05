@@ -12,6 +12,7 @@ const SignupPage = props => {
 
   const createUser = event => {
     event.preventDefault()
+
     API.createUser({ email, password, passwordConfirmation: confirmPassword })
       .then(user => {
         console.log(user)
@@ -52,7 +53,7 @@ const SignupPage = props => {
         </Form.Field>
         <Button type='submit'>Submit</Button>
       </Form>
-  
+
     <Link to="/auth/Login">Log in with existing account</Link>
    </div>
   )
