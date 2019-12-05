@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import API from '../adapters/API'
 import { useHistory, Link } from 'react-router-dom'
+import { Form, Button } from 'semantic-ui-react'
 
 const SignupPage = props => {
   const [email, setEmail] = useState('')
@@ -11,6 +12,7 @@ const SignupPage = props => {
 
   const createUser = event => {
     event.preventDefault()
+
     API.createUser({ email, password })
       .then(user => {
         console.log(user)
@@ -24,40 +26,36 @@ const SignupPage = props => {
   }
 
   return (
-    <div>
+    <div className="signup-form-container">
       <h1>Sign up</h1>
-      <form onSubmit={createUser}>
-        <label>
-          Email:
+      <Form
+        onSubmit={createUser}
+        className="signup-form">
+        <Form.Field>
           <input
-            type="text"
-            name="email"
+            placeholder='Email'
             value={email}
-            onChange={event => setEmail(event.target.value)}
-          />
-        </label>
-        <label>
-          Password:
+            onChange={event => setEmail(event.target.value)}/>
+        </Form.Field>
+        <Form.Field>
           <input
-            type="text"
-            name="password"
+            type="password"
+            placeholder='Password'
             value={password}
-            onChange={event => setPassword(event.target.value)}
-          />
-        </label>
-        <label>
-          Confirm Password:
+            onChange={event => setPassword(event.target.value)}/>
+        </Form.Field>
+        <Form.Field>
           <input
-            type="text"
-            name="password"
+            type="password"
+            placeholder='Confirm Password'
             value={confirmPassword}
-            onChange={event => setConfirmPassword(event.target.value)}
-          />
-        </label>
-        <input type="submit" />
-      </form>
-      <Link to="/auth/login">Log in with existing account</Link>
-    </div>
+            onChange={event => setConfirmPassword(event.target.value)}/>
+        </Form.Field>
+        <Button type='submit'>Submit</Button>
+      </Form>
+  
+    <Link to="/auth/Login">Log in with existing account</Link>
+   </div>
   )
 }
 

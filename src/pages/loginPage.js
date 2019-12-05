@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import API from '../adapters/API'
 import { useHistory, Link } from 'react-router-dom'
+import { Form, Button } from 'semantic-ui-react'
 
 const LoginPage = props => {
   const [email, setEmail] = useState('')
@@ -12,41 +13,46 @@ const LoginPage = props => {
     event.preventDefault()
     API.login({ email, password })
       .then(user => {
-        console.log(user)
-        props.setUser(user.user)
-        history.push('/home')
-      })
-      .catch(errors => {
-        console.log(errors)
-        setErrors(errors)
-      })
+        if (Object.keys(user).includes('user')) {
+          console.log('users', user)
+          props.setUser(user.user)
+          setErrors("")
+          history.push('/home')
+        } else {
+          console.log(user.message)
+          setErrors(user.message)
+          history.push('/auth/login')
+        }
+    })
   }
 
   return (
-    <div>
-      <h1>Log In</h1>
-      <form onSubmit={submitLogin}>
-        <label>
-          Email:
+    <div
+      className="login-form-container">
+      <h1>Log in</h1>
+      <Form
+        onSubmit={submitLogin}
+        className="login-form">
+        <Form.Field>
           <input
-            type="text"
-            name="email"
+            placeholder='Email'
             value={email}
-            onChange={event => setEmail(event.target.value)}
-          />
-        </label>
-        <label>
-          Password:
+            onChange={event => setEmail(event.target.value)}/>
+        </Form.Field>
+        <Form.Field>
           <input
-            type="text"
-            name="password"
+            type="password"
+            placeholder='Password'
             value={password}
-            onChange={event => setPassword(event.target.value)}
-          />
-        </label>
-        <input type="submit" />
-      </form>
+            onChange={event => setPassword(event.target.value)}/>
+        </Form.Field>
+        <Button type='submit'>Submit</Button>
+      </Form>
+      
       <Link to="/auth/signup">Create New Account</Link>
+      <div>
+        {errors}
+      </div>
     </div>
   )
 }

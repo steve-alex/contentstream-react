@@ -59,7 +59,7 @@ code {
  
 .new-tweet-form {
   padding-top: 10px;
-  padding-bottom: px;
+  /* padding-bottom: px; */
 }
 
 .icon-filter {
@@ -81,3 +81,35 @@ code {
   float: center;
   padding-top: 10px;
 }
+
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%; 
+  padding-top: 18px;
+}
+
+.login-form {
+  width: 50%;
+  margin: auto;
+  padding-bottom: 15px;
+  /* float: center; */
+}
+
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%; 
+  padding-top: 18px;
+}
+
+.signup-form {
+  width: 50%;
+  margin: auto;
+  padding-bottom: 15px;
+  /* float: center; */
+}
+
+
