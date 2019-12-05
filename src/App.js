@@ -63,6 +63,7 @@ const App = ({history}) => {
             twitter={twitter}
             setTwitter={setTwitter}
             buckets={buckets}
+            setBuckets={setBuckets}
             timeline={timeline}/>
          </Route></>
           : <Route path="/auth">

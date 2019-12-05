@@ -20,6 +20,7 @@ const HomePage = (props) => {
           <div className="menu-container">
             <MenuContainer
               buckets={props.buckets}
+              setBuckets={props.setBuckets}
               selected={selected}
               setSelected={setSelected}
               selectedTweet={selectedTweet}

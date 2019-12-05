@@ -35,8 +35,18 @@ const twitterLogin = () => {
     })
 }
 
+const refreshBuckets = (setBuckets) => {
+  fetch('http://localhost:3001/buckets', {
+    headers: {
+      'Content-Type': 'Application/json',
+      Accept: 'Application/json',
+      authorisation: localStorage.token
+    }
+  }).then(res => res.json()).then(setBuckets)
+}
+
 const MenuContainer = (props) => {
-  const [buckets, setBuckets] = useState('')
+  // const [buckets, setBuckets] = useState('')
   const [bucketName, setBucketName] = useState('')
 
   const createNewBucket = e => {
@@ -52,8 +62,11 @@ const MenuContainer = (props) => {
         name: bucketName
       })
     })
-      .then(resp => resp.json())
-      .then(() => props.setNewBucket(!props.newBucket))
+      .then(() => {
+        props.setNewBucket(!props.newBucket)
+        setBucketName("")
+        refreshBuckets(props.setBuckets)
+      })
     // .then(newBucket => setBuckets([...buckets, newBucket]))
   }
 
