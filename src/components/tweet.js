@@ -10,20 +10,16 @@ const Tweet = (props) => {
       setText(props.text)
     }, [])
 
-    const onDrag = (e, tweet) => {
-      console.log(tweet.id)
+    const onDrag = (e, tweetId) => {
+      console.log(tweetId)
       e.preventDefault()
-      props.setSelectedTweet({
-        tweetId: tweet.tweetId,
-        text: tweet.text,
-        sourceCreatedAt: tweet.sourceCreatedAt
-      })
+      props.setSelectedTweet(tweetId)
     }
 
     return (
       <div
         draggable
-        onDrag={(e) => onDrag(e, props)}
+        onDrag={(e) => onDrag(e, props.tweetId)}
         >
         <TwitterTweetEmbed
           className="embeddedTweet"
