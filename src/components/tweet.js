@@ -11,7 +11,7 @@ const Tweet = (props) => {
     }, [])
 
     const onDrag = (e, tweetId) => {
-      console.log(tweetId)
+      // console.log(tweetId)
       e.preventDefault()
       props.setSelectedTweet(tweetId)
     }
