@@ -53,7 +53,6 @@ const HomeTimeline = (props) => {
       })
     })
       .then(() => {
-        console.log('hi')
         fetchTweets(props.setTimeline)
         setNewTweet('')
       })
