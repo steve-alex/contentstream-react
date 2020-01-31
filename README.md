@@ -1,1 +1,1 @@
-contentStream is a Twitter client enabling users to save tweets from their timeline into different categories to revisit them later. It's built on a MERN stack and you can find the backend repo [here](https://github.com/idmyn/contentStream-node).
+contentStream is a Twitter client that enables users to save tweets from their timeline into different categories to revisit them later. It's built on a MERN stack and you can find the backend repo [here](https://github.com/idmyn/contentStream-node).
